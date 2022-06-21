@@ -1,0 +1,39 @@
+version: "3.3"
+
+services:
+
+  web:
+    
+    build:
+      context: ./
+      dockerfile: Dockerfile.web
+    
+    container_name: bank-api
+
+    ports:
+      - '3001:3001'
+
+    links:
+      - mongo
+      
+    environment:
+      - DATABASE_URL=mongodb://root:mdp@mongo
+            
+    volumes:
+       - ./:/usr/src/app
+
+
+  mongo:
+  
+    image: mongo:4.0
+    
+    container_name: bank-mongodb
+    
+    ports: 
+      - "27017:27017"
+      
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=mdp
+      
+      
