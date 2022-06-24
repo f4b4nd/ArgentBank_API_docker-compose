@@ -2,46 +2,31 @@
 
 This codebase contains the code needed to run the backend for Argent Bank.
 
-## Getting Started
+## 1.Prerequisites :
+- Docker
+- Docker-compose
 
-### Prerequisites
+## 2. Installation
 
-Argent Bank uses the following tech stack:
+You can clone this repository with the following command :
 
-- [Node.js v12](https://nodejs.org/en/)
-- [MongoDB Community Server](https://www.mongodb.com/try/download/community)
+`git clone https://github.com/f4b4nd/ArgentBank_API_docker-compose.git`
 
-Please make sure you have the right versions and download both packages. You can verify this by using the following commands in your terminal:
 
-```bash
-# Check Node.js version
-node --version
+## 3. Launch backend + MongoDB
+- Get into the folder : `cd ./ArgentBank_API_docker-compose/`
+- Run the commmand : `docker-compose up`
 
-# Check Mongo version
-mongo --version
-```
+Your server should now be running at http://locahost:3001
 
-### Instructions
+---
 
-1. Fork this repo
-1. Clone the repo onto your computer
-1. Open a terminal window in the cloned project
-1. Run the following commands:
+## 4. Add Data to MongoDB via backend
+- After running `docker-compose up`, you should have 2 containers running: `bank-api` and `bank-mongodb`
+- Open backend container via the following command : `docker exec -it bank-api /bin/sh`
+- Inside the container, run the following command: `npm run populate-db`
 
-```bash
-# Install dependencies
-npm install
-
-# Start local dev server
-npm run dev:server
-
-# Populate database with two users
-npm run populate-db
-```
-
-Your server should now be running at http://locahost:3001 and you will now have two users in your MongoDB database!
-
-## Populated Database Data
+### Populated Database Data
 
 Once you run the `populate-db` script, you should have two users in your database:
 
@@ -59,10 +44,11 @@ Once you run the `populate-db` script, you should have two users in your databas
 - Email: `steve@rogers.com`,
 - Password: `password456`
 
-## API Documentation
+## 5. API Documentation
 
 To learn more about how the API works, once you have started your local environment, you can visit: http://localhost:3001/api-docs
 
+---
 ## Design Assets
 
 Static HTML and CSS has been created for most of the site and is located in: `/designs`.
